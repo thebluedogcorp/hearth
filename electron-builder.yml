@@ -76,6 +76,10 @@ nsis:
   oneClick: false
   perMachine: false
   allowToChangeInstallationDirectory: true
+  # Per-user install running as the user (asInvoker): no UAC elevation prompt,
+  # which also removes the wine-only elevate staging step from Linux cross-builds.
+  allowElevation: false
+  packElevateHelper: false
   createDesktopShortcut: always
   createStartMenuShortcut: true
   shortcutName: Hearth

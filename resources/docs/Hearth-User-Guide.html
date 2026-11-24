@@ -83,7 +83,7 @@ pre { margin: 0 0 16px; padding: 16px; background: #05060a; border: 1px solid va
   <h1 class="cover-title">Hearth<br>User Guide</h1>
   <p class="cover-sub">Install Hearth on Windows, organize the folders you already own, and stream them through a private OTT-style interface on phones, tablets, computers and TV browsers.</p>
   <div class="cover-meta">
-    <span class="chip">Version 1.0.1</span>
+    <span class="chip">Version 1.0.2</span>
     <span class="chip">Windows x64</span>
     <span class="chip">Direct Play &amp; Transcoding</span>
     <span class="chip">Local + Secure Remote</span>
@@ -110,8 +110,8 @@ pre { margin: 0 0 16px; padding: 16px; background: #05060a; border: 1px solid va
     <div class="section-tag">02 &middot; Installation</div>
     <h1>Install on Windows</h1>
   </div>
-  <p>Hearth ships as a 64-bit NSIS installer for Windows 10 and Windows 11. Download <strong>Hearth-Setup-1.0.0-x64.exe</strong>, double-click it, choose an installation folder if you do not want the default, and follow the wizard. Setup creates Start Menu and Desktop shortcuts and registers an uninstaller in Windows Settings &gt; Apps. It does not delete your media or your server database when uninstalled.</p>
-  <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Run the installer</strong><p>Launch <code>Hearth-Setup-1.0.0-x64.exe</code> and allow Windows to run the file. Because the community build is not code-signed, SmartScreen may ask for confirmation; choose <em>More info</em> and <em>Run anyway</em> if you trust the source.</p></div></div>
+  <p>Hearth ships as a 64-bit NSIS installer for Windows 10 and Windows 11. Download <strong>Hearth-Setup-1.0.2-x64.exe</strong>, double-click it, choose an installation folder if you do not want the default, and follow the wizard. Setup creates Start Menu and Desktop shortcuts and registers an uninstaller in Windows Settings &gt; Apps. It does not delete your media or your server database when uninstalled.</p>
+  <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Run the installer</strong><p>Launch <code>Hearth-Setup-1.0.2-x64.exe</code> and allow Windows to run the file. Because the community build is not code-signed, SmartScreen may ask for confirmation; choose <em>More info</em> and <em>Run anyway</em> if you trust the source.</p></div></div>
   <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Choose the install location</strong><p>The default is <code>%LOCALAPPDATA%\Programs\Hearth</code>. Program files and media storage are intentionally separate; your movies and music should live wherever you already keep them.</p></div></div>
   <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Launch Hearth</strong><p>Use the finish-page launch button, the Desktop shortcut, or the Start Menu entry. The app starts in the system tray after you close the window, so the server keeps running unless you quit it from the tray.</p></div></div>
   <div class="note"><p><strong>SmartScreen and antivirus.</strong> The installer is unsigned. SmartScreen warnings are expected for any unsigned executable. Use an SHA-256 checksum from the release page to confirm the file before running it. If you distribute Hearth privately, signing your builds removes the warning.</p></div>
@@ -127,7 +127,7 @@ pre { margin: 0 0 16px; padding: 16px; background: #05060a; border: 1px solid va
     <div class="card"><h3>Administrator account</h3><p>Create a username and a password of at least 12 characters. This account can manage libraries, users, network settings and backups. Regular accounts are created later in <strong>Users</strong>.</p></div>
     <div class="card"><h3>Network</h3><p>Choose a port (default 7341) and bind address. Use <em>All interfaces</em> to allow LAN devices, or <em>Localhost only</em> if you plan to access Hearth exclusively through a local proxy or VPN.</p></div>
   </div>
-  <p>The final wizard step saves the configuration, starts the server and queues the first scan. The exact LAN address appears on the dashboard and in <strong>Network</strong>. Open that address in a browser on another device, sign in, and your library should begin appearing as files are indexed.</p>
+  <p>The final wizard step saves the configuration, starts the server and queues the first scan. If you prefer not to use the desktop panel, opening <code>http://localhost:7341</code> in a browser on the server machine shows the same three-step wizard (available until your administrator account exists). The exact LAN address appears on the dashboard and in <strong>Network</strong>. Open that address in a browser on another device, sign in, and your library should begin appearing as files are indexed.</p>
 
   <div class="chapter-header">
     <div class="section-tag">04 &middot; Libraries</div>

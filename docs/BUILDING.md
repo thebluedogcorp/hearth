@@ -31,7 +31,13 @@ The smoke test (`test/smoke.js`) generates real media with FFmpeg, boots a real 
    ```
    Output lands in `dist/Hearth-Setup-<version>-x64.exe`.
 
-Cross-building from Linux works too (`electron-builder --win nsis --x64` on Linux with `wine` available for icon embedding); the release pipeline runs on real Windows runners instead, which we recommend.
+Cross-building from Linux uses a wine-free path (electron-builder's own NSIS target must run the installer under wine to generate the uninstaller, which headless Linux machines usually can't do):
+
+```bash
+bash scripts/build-installer-linux.sh
+```
+
+It packages the app with `electron-builder --dir` and then compiles the installer with the native `makensis` from electron-builder's cache using `scripts/installer-linux.nsh`. The release pipeline runs on real Windows runners and uses the standard electron-builder path instead — that's the recommended way to produce official artifacts.
 
 ## Releasing (maintainers)
 
