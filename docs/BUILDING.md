@@ -5,7 +5,7 @@
 | Artifact | Built by | Needs |
 |---|---|---|
 | Web app (`public/`) | nothing — plain files | — |
-| Server (`server/`) | nothing — plain files | Node.js ≥ 20 |
+| Server (`server/`) | nothing — plain files | Node.js ≥ 22 |
 | Desktop panel + installer | `electron-builder` | Node.js + `npm install` |
 
 ## Development setup

@@ -2,7 +2,7 @@
 
 **Your private streaming platform — a self-hosted media server that turns a Windows PC into your own Netflix-style library, with a desktop control panel and a beautiful web app for every screen.**
 
-[![CI](https://github.com/YOUR_GITHUB_USERNAME/hearth/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_GITHUB_USERNAME/hearth/actions/workflows/ci.yml)
+[![CI](https://github.com/thebluedogcorp/hearth/actions/workflows/ci.yml/badge.svg)](https://github.com/thebluedogcorp/hearth/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/badge/release-v1.0.2-ff5c5c)](../../releases)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Tests](https://img.shields.io/badge/smoke%20tests-39%2F39%20pass-brightgreen)](test/smoke.js)
@@ -38,7 +38,7 @@ Hearth is a single installable app for people who want their own media library w
 ## What's inside
 
 - **Windows desktop control panel** (Electron): first-run wizard, dashboard stats, library manager, user accounts, storage and network controls, logs, backup, Windows-service installation, diagnostics.
-- **Media server** (Node.js ≥ 20, zero native modules): `node:sqlite` storage, structured JSON logs with rotation, scrypt password hashing, AES-256-GCM secret storage, session cookies with CSRF protection.
+- **Media server** (Node.js ≥ 22, zero native modules): `node:sqlite` storage, structured JSON logs with rotation, scrypt password hashing, AES-256-GCM secret storage, session cookies with CSRF protection.
 - **Scanner & metadata**: recursive library scan with ffprobe, sidecar artwork/subtitles, TMDB for movies & TV and MusicBrainz for music (optional API keys; everything cached locally).
 - **Playback**: Direct Play when the device supports the file, otherwise on-demand HLS (4-second segments) with quality switching, hardware-encoder probe & fallback, WebVTT subtitle conversion, preview thumbnails.
 - **Files & downloads**: browse "Files" libraries, download single files or whole folders as streamed ZIP (CRC32 + ZIP64).
@@ -51,7 +51,7 @@ Hearth is a single installable app for people who want their own media library w
 2. **Launch Hearth** — the desktop panel starts and opens the wizard. Add a media folder, create your administrator account, press **Create my server**.
 3. **Watch** — the panel shows your server's web address. Open it on any device on the same network, sign in, and press play.
 
-> No Windows desktop? Run the server on any machine with Node ≥ 20:
+> No Windows desktop? Run the server on any machine with Node ≥ 22:
 > ```bash
 > node server/index.js --data D:\HearthData --setup-token "$(openssl rand -hex 24)"
 > ```
@@ -113,7 +113,7 @@ The test suite creates real media files with FFmpeg, runs a real server on port 
 
 **Do I need a TMDB API key?** No — libraries work fully without metadata services; posters and plot summaries are a bonus layer you can add anytime in Settings.
 
-**Can I run it headless (Linux NAS, VM)?** The server is pure Node.js and runs anywhere Node ≥ 20 runs. The desktop panel and installer are Windows-focused; headless first-run setup is done from a local browser or the setup token.
+**Can I run it headless (Linux NAS, VM)?** The server is pure Node.js and runs anywhere Node ≥ 22 runs. The desktop panel and installer are Windows-focused; headless first-run setup is done from a local browser or the setup token.
 
 **Where is my data?** Everything lives in one data directory (`%APPDATA%\Hearth` by default): SQLite database, artwork cache, logs, backups. Copy it, back it up, move it — that's the whole state.
 

@@ -26,3 +26,6 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Wine .deb payloads left over from an old cross-build experiment (not needed)
+*.deb

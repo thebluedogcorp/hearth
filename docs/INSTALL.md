@@ -28,10 +28,10 @@ Advanced options (collapsed by default): server name, listening port (default 73
 - **Network** lists your LAN addresses and remote-access options.
 - **Backup** creates a consistent snapshot of your entire database (`VACUUM INTO`).
 
-## Option B — Headless / any OS (Node.js ≥ 20)
+## Option B — Headless / any OS (Node.js ≥ 22)
 
 ```bash
-git clone https://github.com/YOUR_GITHUB_USERNAME/hearth.git
+git clone https://github.com/thebluedogcorp/hearth.git
 cd hearth
 npm install --omit=dev
 
