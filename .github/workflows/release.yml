@@ -38,7 +38,7 @@ jobs:
           HEARTH_TEST_PORT: 7341
 
       - name: Build Windows installer
-        run: npx electron-builder --win nsis --x64
+        run: npx electron-builder --win nsis --x64 --publish never
         env:
           # Code signing is optional; set these repository secrets to sign releases.
           WIN_CSC_LINK: ${{ secrets.WIN_CSC_LINK }}
@@ -48,7 +48,7 @@ jobs:
         shell: bash
         run: |
           cd dist
-          sha256sum *.exe > SHA256SUMS.txt
+          sha256sum *.exe | grep -v '__uninstaller' > SHA256SUMS.txt
           cat SHA256SUMS.txt
 
       - name: Upload installer artifact
@@ -57,6 +57,7 @@ jobs:
           name: Hearth-Windows-x64
           path: |
             dist/*.exe
+            !dist/*__uninstaller*
             dist/SHA256SUMS.txt
           if-no-files-found: error
 
@@ -66,6 +67,7 @@ jobs:
         with:
           files: |
             dist/*.exe
+            !dist/*__uninstaller*
             dist/SHA256SUMS.txt
           body_path: RELEASE_NOTES.md
           fail_on_unmatched_files: true
