@@ -27,7 +27,11 @@ jobs:
         shell: bash
         run: bash scripts/fetch-vendor.sh
 
-      - name: Run server smoke test
+      - name: Put the vendored FFmpeg on PATH (runner images no longer ship it)
+        shell: bash
+        run: echo "$GITHUB_WORKSPACE/resources/ffmpeg" >> "$GITHUB_PATH"
+
+      - name: Run server smoke test (against the FFmpeg that ships in the installer)
         shell: bash
         run: node test/smoke.js
         env:
