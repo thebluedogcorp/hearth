@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a12">
+  <meta name="description" content="Hearth — your private streaming platform">
+  <title>Hearth</title>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icon-192.png">
+  <link rel="stylesheet" href="/app.css?v=1.0.2">
+</head>
+<body>
+  <div id="app">
+    <div id="boot" class="boot-screen" aria-busy="true">
+      <div class="boot-mark">HEARTH</div>
+      <div class="boot-line"><span></span></div>
+    </div>
+  </div>
+
+  <template id="tpl-app">
+    <div id="app-shell">
+      <header class="topbar">
+      <button class="icon-button nav-toggle" data-action="toggle-sidebar" aria-label="Menu"></button>
+      <a class="brand" href="#/home" data-link>HEARTH</a>
+      <nav class="top-tabs" aria-label="Main">
+        <a href="#/home" data-link>Home</a>
+        <a href="#/movies" data-link>Movies</a>
+        <a href="#/tv" data-link>TV</a>
+        <a href="#/music" data-link>Music</a>
+        <a href="#/files" data-link>Files</a>
+        <a href="#/collections" data-link>Collections</a>
+      </nav>
+      <div class="top-actions">
+        <form class="search-box" data-search>
+          <input id="global-search" type="search" placeholder="Search titles, artists, albums, files…" autocomplete="off" aria-label="Search">
+          <button type="submit" aria-label="Search"></button>
+        </form>
+        <div class="user-menu">
+          <button id="user-button" data-action="user-menu" aria-haspopup="true"></button>
+          <div id="user-popover" class="popover hidden" role="menu">
+            <div class="popover-user"><strong id="popover-name"></strong><span id="popover-role"></span></div>
+            <a href="#/favorites" data-link role="menuitem">Favorites</a>
+            <a href="#/watchlist" data-link role="menuitem">Watchlist</a>
+            <a href="#/continue" data-link role="menuitem">Continue Watching</a>
+            <button data-action="sign-out">Sign out</button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <aside id="sidebar" class="sidebar" aria-label="Library navigation">
+      <div class="sidebar-brand"><span></span>HEARTH</div>
+      <a href="#/home" data-link><i>◉</i>Home</a>
+      <a href="#/movies" data-link><i>▮</i>Movies</a>
+      <a href="#/tv" data-link><i>▤</i>TV Shows</a>
+      <a href="#/music" data-link><i>♪</i>Music</a>
+      <a href="#/files" data-link><i>▦</i>Files</a>
+      <a href="#/collections" data-link><i>❐</i>Collections</a>
+      <a href="#/search" data-link><i>⌕</i>Search</a>
+      <div class="sidebar-foot">Your private media server</div>
+    </aside>
+    <main id="main" class="main" tabindex="-1" aria-live="polite"></main>
+    </div>
+    <div id="mini-player" class="mini-player hidden"></div>
+    <div id="modal-root"></div>
+    <div id="toast-root" class="toast-root" aria-live="assertive"></div>
+  </template>
+
+  <template id="tpl-login">
+    <main class="auth-screen">
+      <section class="auth-panel">
+        <div class="auth-brand"><span>HEARTH</span><p>Your private streaming platform</p></div>
+        <h1>Welcome back</h1>
+        <form id="login-form" autocomplete="on">
+          <label>Username<input name="username" required autocomplete="username"></label>
+          <label>Password<input name="password" type="password" required autocomplete="current-password"></label>
+          <button class="primary wide" type="submit">Sign in</button>
+          <p id="login-error" class="form-error hidden"></p>
+        </form>
+        <div class="auth-note">Connect to the same network as your Hearth server, or use its approved remote address.</div>
+      </section>
+    </main>
+  </template>
+
+  <template id="tpl-firstrun">
+    <main class="auth-screen">
+      <section class="auth-panel auth-panel-wide">
+        <div class="auth-brand"><span>HEARTH</span><p>Set up your private streaming platform</p></div>
+        <h1>Create your server</h1>
+        <p class="firstrun-lede">Three quick steps and you are streaming. Your files are never moved or changed.</p>
+        <form id="firstrun-form" autocomplete="on">
+          <section class="firstrun-step">
+            <h2><span>1</span> Add media folders</h2>
+            <div class="folder-add-row">
+              <input id="folder-path" type="text" placeholder="Paste a folder path, e.g. D:\Movies" aria-label="Media folder path">
+              <button type="button" class="ghost" id="folder-add">Add</button>
+            </div>
+            <ul id="folder-list" class="folder-list"></ul>
+            <p class="firstrun-hint">Movies, TV shows, music and any other folders are supported. You can add more later.</p>
+          </section>
+          <section class="firstrun-step">
+            <h2><span>2</span> Create your account</h2>
+            <label>Server name<input id="server-name" value="Hearth" maxlength="60"></label>
+            <label>Username<input id="admin-username" value="admin" required autocomplete="username"></label>
+            <label>Password<input id="admin-password" type="password" required autocomplete="new-password" placeholder="At least 12 characters"></label>
+            <label>Confirm password<input id="admin-password2" type="password" required autocomplete="new-password" placeholder="Repeat the password"></label>
+          </section>
+          <section class="firstrun-step">
+            <h2><span>3</span> Create the server</h2>
+            <button class="primary wide" type="submit" id="firstrun-create">Create my server</button>
+            <p id="firstrun-error" class="form-error hidden"></p>
+          </section>
+        </form>
+        <div class="auth-note">Hearth will scan your folders in the background — the app is ready right away.</div>
+      </section>
+    </main>
+  </template>
+
+  <script src="/hls.min.js?v=1.0.2" defer></script>
+  <script src="/player.js?v=1.0.2" defer></script>
+  <script src="/app.js?v=1.0.2" defer></script>
+</body>
+</html>

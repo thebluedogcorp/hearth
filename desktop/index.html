@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;">
+  <title>Hearth Control Panel</title>
+  <link rel="stylesheet" href="desktop.css">
+</head>
+<body>
+  <div id="app">
+    <div class="boot-screen"><div class="boot-mark">HEARTH</div><div class="boot-line"><span></span></div></div>
+  </div>
+
+  <template id="tpl-shell">
+    <div class="desktop">
+      <nav class="desktop-nav">
+        <div class="desktop-brand"><span></span>HEARTH</div>
+        <button class="nav-item active" data-view="dashboard"><i>◉</i>Dashboard</button>
+        <button class="nav-item" data-view="libraries"><i>▤</i>Libraries</button>
+        <button class="nav-item" data-view="storage"><i>💾</i>Storage</button>
+        <button class="nav-item" data-view="users"><i>👥</i>Users</button>
+        <button class="nav-item" data-view="network"><i>🌐</i>Network</button>
+        <button class="nav-item" data-view="playback"><i>🎬</i>Playback</button>
+        <button class="nav-item" data-view="metadata"><i>🏷️</i>Metadata</button>
+        <button class="nav-item" data-view="logs"><i>📄</i>Logs</button>
+        <button class="nav-item" data-view="backup"><i>🗄️</i>Backup</button>
+        <button class="nav-item" data-view="updates"><i>⬆️</i>Updates</button>
+        <div class="desktop-status" id="nav-status">
+          <div><span class="status-dot" id="status-dot"></span><strong id="status-label">Checking…</strong></div>
+          <small id="status-detail">Hearth Media Server</small>
+          <div class="server-controls">
+            <button class="ghost" id="btn-start">Start</button>
+            <button class="ghost" id="btn-stop">Stop</button>
+            <button class="ghost" id="btn-restart">Restart</button>
+            <button class="ghost" id="btn-open-web">Open Web</button>
+          </div>
+        </div>
+      </nav>
+      <main class="desktop-main" id="view"></main>
+    </div>
+  </template>
+
+  <template id="tpl-onboarding">
+    <div class="wizard">
+      <div class="wizard-head">
+        <div class="brand">HEARTH</div>
+        <h1 id="wizard-title">Welcome to Hearth</h1>
+        <p id="wizard-subtitle">Turn this PC into your private streaming platform in a few guided steps.</p>
+      </div>
+      <div class="wizard-progress" id="wizard-progress"></div>
+      <div class="panel wizard-body" id="wizard-body"></div>
+      <div class="wizard-actions">
+        <button class="ghost" id="wizard-back" disabled>Back</button>
+        <button class="primary" id="wizard-next">Continue</button>
+      </div>
+    </div>
+  </template>
+
+  <script src="desktop.js"></script>
+</body>
+</html>

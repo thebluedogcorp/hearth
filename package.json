@@ -1,0 +1,23 @@
+{
+  "name": "hearth",
+  "version": "1.0.2",
+  "description": "Premium self-hosted media server with a Windows desktop control panel and OTT-style web app",
+  "main": "desktop/main.js",
+  "author": "Hearth Media",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "test": "node test/smoke.js",
+    "start": "electron desktop/main.js",
+    "package:win": "electron-builder --win nsis --x64",
+    "dist": "electron-builder --win nsis --x64"
+  },
+  "dependencies": {
+    "hls.js": "1.7.4"
+  },
+  "devDependencies": {
+    "electron": "45.4.1",
+    "electron-builder": "26.18.0",
+    "resedit": "3.1.1"
+  }
+}

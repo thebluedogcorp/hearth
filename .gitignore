@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Vendored binaries — fetched by scripts/fetch-vendor.sh (too large for git)
+resources/ffmpeg/*.exe
+resources/binaries/*.exe
+resources/service/HearthService.exe
+
+# Downloaded archives
+vendor-downloads/
+
+# Test artifacts
+test/.tmp-data/
+test/.tmp-media/
+
+# Local secrets and state
+.env
+*.hearthbackup
+
+# OS noise
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

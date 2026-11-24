@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Server smoke test (Node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [20, 22, 24]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Install FFmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
+      - name: Syntax-check all server and desktop sources
+        run: |
+          for file in server/*.js desktop/*.js public/app.js public/player.js test/smoke.js; do
+            node --check "$file"
+          done
+
+      - name: Run end-to-end smoke test
+        run: node test/smoke.js
+        env:
+          HEARTH_TEST_PORT: 7341
+
+  webui:
+    name: Web assets present and valid
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify required web assets exist
+        run: |
+          for asset in public/index.html public/app.js public/app.css public/player.js public/hls.min.js public/manifest.webmanifest public/sw.js; do
+            test -s "$asset" || { echo "missing or empty: $asset"; exit 1; }
+          done
+      - name: Verify desktop packaging resources exist
+        run: |
+          test -f electron-builder.yml
+          test -f build/icon.ico
+          test -f resources/service/install-service.ps1
+          test -f resources/docs/README.md

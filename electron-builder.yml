@@ -1,0 +1,84 @@
+appId: app.hearth.media
+productName: Hearth
+copyright: Copyright © 2026 Hearth
+executableName: Hearth
+
+directories:
+  output: dist
+  buildResources: build
+
+files:
+  - package.json
+  - desktop/main.js
+  - desktop/preload.js
+
+extraResources:
+  - from: server
+    to: server
+    filter:
+      - "**/*"
+      - "!**/.tmp-data/**"
+      - "!**/.tmp-media/**"
+      - "!test/**"
+  - from: public
+    to: public
+    filter:
+      - "**/*"
+  - from: desktop
+    to: desktop
+    filter:
+      - "index.html"
+      - "desktop.css"
+      - "desktop.js"
+      - "preload.js"
+  - from: build
+    to: build
+    filter:
+      - "icon.ico"
+      - "icon.png"
+      - "icon-256.png"
+  - from: resources/service
+    to: service
+    filter:
+      - "**/*"
+  - from: resources/docs
+    to: docs
+    filter:
+      - "**/*"
+  - from: resources/ffmpeg
+    to: ffmpeg
+    filter:
+      - "ffmpeg.exe"
+      - "ffprobe.exe"
+      - "LICENSE.txt"
+      - "FFMPEG-SOURCE.txt"
+  - from: resources/binaries
+    to: binaries
+    filter:
+      - "cloudflared.exe"
+      - "THIRD-PARTY-NOTICES.txt"
+
+asar: true
+compression: maximum
+removePackageScripts: true
+npmRebuild: false
+
+win:
+  target:
+    - nsis
+  icon: build/icon.ico
+  requestedExecutionLevel: asInvoker
+  electronLanguages:
+    - en-US
+  artifactName: Hearth-Setup-${version}-${arch}.${ext}
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: always
+  createStartMenuShortcut: true
+  shortcutName: Hearth
+  deleteAppDataOnUninstall: false
+  include: build/installer.nsh
+  artifactName: Hearth-Setup-${version}-${arch}.${ext}

@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hearth User Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+@page { size: 720px 1020px; margin: 0; }
+:root {
+  --bg: #07070c;
+  --panel: #111320;
+  --panel2: #171a27;
+  --text: #f4f3f7;
+  --muted: #a8a9bb;
+  --dim: #737484;
+  --accent: #ff7a59;
+  --accent2: #ffb36b;
+  --line: rgba(255,255,255,.10);
+}
+html, body { margin: 0; padding: 0; width: 720px; background: var(--bg); color: var(--text); font-family: Inter, "Noto Sans SC", "Segoe UI", sans-serif; font-size: 15px; line-height: 1.62; }
+@media screen {
+  html { height: auto; display: flex; justify-content: center; background: #101018; }
+  body { margin: 24px auto; box-shadow: 0 30px 90px rgba(0,0,0,.55); }
+}
+* { box-sizing: border-box; }
+p, li, td, .card { overflow-wrap: break-word; word-break: break-word; }
+.cover {
+  width: 720px; height: 1020px; break-after: page; overflow: hidden; position: relative;
+  padding: 64px; display: flex; flex-direction: column; justify-content: center;
+  background: radial-gradient(760px 460px at 78% -8%, rgba(255,122,89,.21), transparent 66%),
+              radial-gradient(640px 440px at -5% 28%, rgba(90,216,255,.12), transparent 60%),
+              linear-gradient(180deg, #08080e, #0a0a12 54%, #060609);
+}
+.cover::before { content: ""; position: absolute; right: 54px; top: 58px; width: 116px; height: 116px; border-radius: 32px; background: linear-gradient(145deg, #ff7a59, #ff4d6d); box-shadow: 0 24px 70px rgba(255,80,80,.30); }
+.cover-tag { color: var(--accent2); text-transform: uppercase; letter-spacing: .36em; font-size: 12px; font-weight: 700; margin-bottom: 26px; }
+.cover-title { font-size: 88px; line-height: .95; font-weight: 900; letter-spacing: -.045em; margin: 0 0 26px; }
+.cover-sub { max-width: 520px; color: #d8d6e0; font-size: 20px; line-height: 1.5; margin-bottom: 42px; }
+.cover-meta { display: flex; flex-wrap: wrap; gap: 10px; max-width: 560px; }
+.chip { border: 1px solid var(--line); color: var(--muted); border-radius: 999px; padding: 8px 15px; font-size: 12px; background: rgba(255,255,255,.045); }
+.cover-foot { position: absolute; left: 64px; bottom: 32px; color: var(--dim); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; }
+
+.main-content { padding: 58px 62px 48px; background: var(--bg); }
+.chapter-header { break-after: avoid; break-inside: avoid; margin-top: 28px; }
+.chapter-header:first-child { margin-top: 0; }
+.section-tag { color: var(--accent); text-transform: uppercase; letter-spacing: .3em; font-size: 11px; font-weight: 700; margin-bottom: 10px; }
+h1 { font-size: 34px; line-height: 1.14; font-weight: 800; letter-spacing: -.035em; margin: 0 0 10px; }
+h2 { font-size: 23px; line-height: 1.2; font-weight: 750; letter-spacing: -.02em; margin: 24px 0 8px; }
+.divider { width: 64px; height: 4px; border-radius: 99px; background: linear-gradient(90deg, var(--accent), var(--accent2)); margin: 14px 0 20px; }
+p { margin: 0 0 14px; color: #d9d8e2; }
+p strong { color: #fff; }
+.lead { font-size: 17px; color: #e3e1e9; }
+ul { margin: 0 0 16px; padding-left: 22px; color: #d9d8e2; }
+li { margin: 6px 0; }
+li::marker { color: var(--accent2); }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 20px; margin: 0 0 14px; break-inside: avoid; }
+.card h3 { margin: 0 0 8px; font-size: 17px; letter-spacing: -.01em; }
+.card p:last-child { margin-bottom: 0; }
+.card.warm { background: linear-gradient(135deg, rgba(255,122,89,.12), rgba(255,122,89,.03)); border-color: rgba(255,122,89,.24); }
+.grid { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+.grid .card { flex: 1 1 300px; min-width: 280px; max-width: 100%; margin-bottom: 0; }
+table { width: 100%; border-collapse: collapse; margin: 0 0 16px; break-inside: avoid; }
+th, td { padding: 11px 12px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { color: var(--dim); font-size: 11px; text-transform: uppercase; letter-spacing: .13em; font-weight: 700; }
+td { color: #d9d8e2; font-size: 13px; }
+td:first-child { color: #fff; font-weight: 600; }
+pre { margin: 0 0 16px; padding: 16px; background: #05060a; border: 1px solid var(--line); border-radius: 12px; color: #d7f7e7; font: 12px/1.6 "Cascadia Mono", Consolas, monospace; white-space: pre-wrap; break-inside: avoid; }
+.note { border-left: 3px solid var(--accent); background: rgba(255,122,89,.08); padding: 16px 18px; border-radius: 0 14px 14px 0; margin: 0 0 16px; break-inside: avoid; }
+.note p:last-child { margin-bottom: 0; }
+.kbd { display: inline-block; min-width: 22px; text-align: center; padding: 2px 7px; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 6px; background: #1d202c; color: #fff; font: 600 12px Inter, sans-serif; }
+.step { display: flex; gap: 14px; margin-bottom: 14px; break-inside: avoid; }
+.step-num { flex: 0 0 auto; width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(140deg, var(--accent), #ff4d6d); color: #fff; display: grid; place-items: center; font-weight: 800; font-size: 14px; }
+.step-body strong { display: block; color: #fff; margin-bottom: 3px; }
+.step-body p { margin: 0; color: var(--muted); font-size: 14px; }
+.closing { margin-top: 28px; padding: 26px; background: linear-gradient(135deg, rgba(255,122,89,.13), rgba(90,216,255,.07)); border: 1px solid rgba(255,122,89,.20); border-radius: 18px; break-inside: avoid; }
+.closing h2 { margin-top: 0; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-tag">Personal Media Platform</div>
+  <h1 class="cover-title">Hearth<br>User Guide</h1>
+  <p class="cover-sub">Install Hearth on Windows, organize the folders you already own, and stream them through a private OTT-style interface on phones, tablets, computers and TV browsers.</p>
+  <div class="cover-meta">
+    <span class="chip">Version 1.0.1</span>
+    <span class="chip">Windows x64</span>
+    <span class="chip">Direct Play &amp; Transcoding</span>
+    <span class="chip">Local + Secure Remote</span>
+    <span class="chip">Users &amp; Permissions</span>
+  </div>
+  <div class="cover-foot">Hearth Media &middot; Installation, Configuration and Operations</div>
+</div>
+
+<div class="main-content">
+
+  <div class="chapter-header">
+    <div class="section-tag">01 &middot; Overview</div>
+    <h1>What Hearth does</h1>
+  </div>
+  <p class="lead">Hearth is a self-hosted media server packaged as a Windows desktop application. It stores nothing on a third-party streaming service: your video, music and documents stay in the folders you choose, while the bundled server indexes them and makes them available through a browser-based streaming interface.</p>
+  <p>The desktop app is the control panel for the server. It handles first-time setup, scanning, users, network access, playback settings, diagnostics, backups and updates. The web app is what your household actually uses: a dark, poster-driven interface with Home, Movies, TV, Music, Files, Collections and Search. Both interfaces are served by the same bundled Node.js server and access the same database, so changes made in either place are reflected immediately.</p>
+  <p>Hearth deliberately separates two jobs. Metadata providers only supply descriptions, ratings and artwork; the playable files always come from your configured folders. This makes the system safe to use with personal media and easy to move: if you change PCs, you can point Hearth at the same folders, restore a database backup, and keep your watch history and permissions.</p>
+  <div class="card warm">
+    <h3>What is bundled</h3>
+    <p>The installer includes the Electron desktop shell, a Node.js runtime for the server, SQLite, FFmpeg/ffprobe, hls.js, an optional cloudflared tunnel helper and a Windows service wrapper. You do not need to install Node.js, Python, a database or FFmpeg separately.</p>
+  </div>
+
+  <div class="chapter-header">
+    <div class="section-tag">02 &middot; Installation</div>
+    <h1>Install on Windows</h1>
+  </div>
+  <p>Hearth ships as a 64-bit NSIS installer for Windows 10 and Windows 11. Download <strong>Hearth-Setup-1.0.0-x64.exe</strong>, double-click it, choose an installation folder if you do not want the default, and follow the wizard. Setup creates Start Menu and Desktop shortcuts and registers an uninstaller in Windows Settings &gt; Apps. It does not delete your media or your server database when uninstalled.</p>
+  <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Run the installer</strong><p>Launch <code>Hearth-Setup-1.0.0-x64.exe</code> and allow Windows to run the file. Because the community build is not code-signed, SmartScreen may ask for confirmation; choose <em>More info</em> and <em>Run anyway</em> if you trust the source.</p></div></div>
+  <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Choose the install location</strong><p>The default is <code>%LOCALAPPDATA%\Programs\Hearth</code>. Program files and media storage are intentionally separate; your movies and music should live wherever you already keep them.</p></div></div>
+  <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Launch Hearth</strong><p>Use the finish-page launch button, the Desktop shortcut, or the Start Menu entry. The app starts in the system tray after you close the window, so the server keeps running unless you quit it from the tray.</p></div></div>
+  <div class="note"><p><strong>SmartScreen and antivirus.</strong> The installer is unsigned. SmartScreen warnings are expected for any unsigned executable. Use an SHA-256 checksum from the release page to confirm the file before running it. If you distribute Hearth privately, signing your builds removes the warning.</p></div>
+
+  <div class="chapter-header">
+    <div class="section-tag">03 &middot; First Run</div>
+    <h1>Complete the setup wizard</h1>
+  </div>
+  <p>The first launch opens a single guided setup screen. Add one or more media folders, create your administrator password, and press <strong>Create my server</strong>. Hearth applies safe defaults, starts the server and begins scanning immediately. Advanced settings are collapsed and optional.</p>
+  <div class="grid">
+    <div class="card"><h3>Dependencies</h3><p>Hearth verifies its server runtime, SQLite and FFmpeg. These are bundled, so no separate downloads are required. cloudflared is included but disabled until you enable remote access.</p></div>
+    <div class="card"><h3>Media folders</h3><p>Add folders such as <code>D:\Media\Movies</code>, <code>D:\Media\TV Shows</code>, <code>D:\Media\Music</code> and <code>D:\Media\Downloads</code>. Assign each to Movies, TV, Music or Files. Hearth never moves or edits source files.</p></div>
+    <div class="card"><h3>Administrator account</h3><p>Create a username and a password of at least 12 characters. This account can manage libraries, users, network settings and backups. Regular accounts are created later in <strong>Users</strong>.</p></div>
+    <div class="card"><h3>Network</h3><p>Choose a port (default 7341) and bind address. Use <em>All interfaces</em> to allow LAN devices, or <em>Localhost only</em> if you plan to access Hearth exclusively through a local proxy or VPN.</p></div>
+  </div>
+  <p>The final wizard step saves the configuration, starts the server and queues the first scan. The exact LAN address appears on the dashboard and in <strong>Network</strong>. Open that address in a browser on another device, sign in, and your library should begin appearing as files are indexed.</p>
+
+  <div class="chapter-header">
+    <div class="section-tag">04 &middot; Libraries</div>
+    <h1>Organize media and metadata</h1>
+  </div>
+  <p>Libraries map real folders to categories. During a scan, Hearth walks each folder, skips symlinks and hidden entries, reads file metadata with ffprobe, records size and modification time, and creates indexed titles. Files that disappear are marked missing rather than deleted, so watch history and collections survive a temporarily disconnected drive.</p>
+  <p>Movie and TV filenames are parsed automatically. Names like <code>Example Movie (2020).mkv</code> and <code>Show Name S01E02.mp4</code> produce sensible titles, years, seasons and episodes. Music is interpreted using <code>Artist/Album/01 Track.mp3</code> folder layouts. You can also add sidecar posters, backdrops and subtitles next to your media, and Hearth will use them without any external API.</p>
+  <div class="grid">
+    <div class="card"><h3>Movie (2010).mkv</h3><p>Parsed as a movie title and release year. ffprobe supplies codecs, duration and available streams.</p></div>
+    <div class="card"><h3>Show S01E02.mkv</h3><p>Linked to a show, season 1 and episode 2. Descriptions are fetched when a TMDB key is configured.</p></div>
+    <div class="card"><h3>Artist/Album/01 Song.flac</h3><p>Grouped into artist and album views with track numbers preserved.</p></div>
+    <div class="card"><h3>poster.jpg / fanart.jpg</h3><p>Used directly as local poster and backdrop artwork, with no external provider required.</p></div>
+    <div class="card"><h3>Episode.srt/.ass/.vtt</h3><p>Offered as a selectable subtitle track and converted to WebVTT for browser rendering.</p></div>
+  </div>
+  <p>For richer movie and TV data, add a free TMDB API key in <strong>Metadata</strong>. For music, Hearth queries MusicBrainz without requiring a key, and an optional MusicBrainz token is supported. Responses and artwork are cached in the server database and artwork folder so repeated scans do not spam providers. If a match is wrong, use the manual identify controls to search again or edit the title, overview and year.</p>
+  <div class="note"><p><strong>Scan control.</strong> Use <em>Scan</em> for an incremental scan, <em>Full scan</em> to re-probe every file, or <em>Scan libraries</em> to scan every enabled library. Startup scanning can be enabled in <strong>Playback</strong>. Progress, added titles and errors are shown on the dashboard.</p></div>
+
+  <div class="chapter-header">
+    <div class="section-tag">05 &middot; Web Interface</div>
+    <h1>Browse and watch your library</h1>
+  </div>
+  <p>The web app opens with a cinematic hero, Continue Watching, Recently Added, Trending and Recommended rows. Poster cards show rating and progress; hover reveals a quick play control. The sidebar and top navigation expose dedicated sections for Movies, TV Shows, Music, Files, Collections and Search, and the layout collapses cleanly on phones and tablets.</p>
+  <p>Movie pages include overview, rating, runtime, cast, codecs and download actions. Series pages group seasons and episodes. Music has artist and album browsing plus per-track playback. Files &amp; Downloads provides folder navigation, size and date information, previews and downloads. Collections let each user group titles; Favorites and Watchlist are personal and do not affect other profiles.</p>
+  <div class="card"><h3>Playback controls</h3><p>The player supports play/pause, seek, 10-second skips, volume, speed from 0.5&times; to 2&times;, fullscreen, Picture-in-Picture, audio track selection, subtitle selection, resume and automatic next-episode playback. Keyboard shortcuts include <span class="kbd">Space</span>/<span class="kbd">K</span> for play, <span class="kbd">J</span>/<span class="kbd">L</span> or arrow keys for seeking, <span class="kbd">M</span> for mute and <span class="kbd">F</span> for fullscreen.</p></div>
+  <p>When a browser can decode the file, Hearth uses Direct Play and serves bytes directly with HTTP Range support. When the container or codec is incompatible, it creates an authenticated HLS session and FFmpeg produces 4-second segments. The player adapts among source, 1080p, 720p, 480p and 360p renditions depending on the title and browser, and server settings control hardware acceleration and concurrent transcodes.</p>
+
+  <div class="chapter-header">
+    <div class="section-tag">06 &middot; Users</div>
+    <h1>Accounts and permissions</h1>
+  </div>
+  <p>Every viewer should have their own account. Profiles keep separate Continue Watching positions, favorites, watchlists, collections and playback preferences. Administrators manage users from the desktop control panel and can create or edit accounts, reset passwords, revoke sessions, disable accounts, allow or block downloads, and restrict access to specific libraries.</p>
+  <p>A restricted user with access to <em>Movies</em> and <em>Files</em> will not see TV or Music libraries, titles, artwork or download links from the excluded libraries. Downloads and previews are separate from browsing, so you can let someone browse a folder without letting them download its contents. Passwords are stored using salted scrypt hashes, and browser sessions use HttpOnly cookies with CSRF protection.</p>
+  <div class="card"><h3>Good household setup</h3><p>Create one admin account for yourself, one normal account per household member, and disable downloads on accounts used by children or guest devices. Revoke sessions after changing a password or removing access to a library.</p></div>
+
+  <div class="chapter-header">
+    <div class="section-tag">07 &middot; Files</div>
+    <h1>Sharing documents and downloads</h1>
+  </div>
+  <p>A library of type <strong>Files</strong> is a controlled file distribution area rather than a streaming library. It can contain documents, archives, images, installers or any other content. Users with permission can browse folders, see sizes and modification dates, preview supported files, download single files, and download folders as ZIP archives.</p>
+  <p>Single-file downloads support HTTP Range requests, so interrupted downloads can resume. Folder downloads are streamed as a ZIP archive rather than being loaded into memory, which makes them practical even for large folders. Path validation prevents access above the configured root, and symbolic links are skipped during scanning and ZIP creation.</p>
+  <div class="card"><h3>Previews</h3><p>Images, PDFs, text files, videos and audio files can be previewed inline. Office documents and unsupported formats show file information and can still be downloaded. Text preview is limited to 1 MB, and media preview is limited to 2 GB per file.</p></div>
+
+  <div class="chapter-header">
+    <div class="section-tag">08 &middot; Network</div>
+    <h1>LAN and remote access</h1>
+  </div>
+  <p>For household use, bind Hearth to all interfaces and open the displayed <code>http://your-pc-ip:7341</code> address on another device. The dashboard lists detected adapters and port. Windows may ask for firewall permission the first time a remote device connects.</p>
+  <p>For access away from home, Hearth offers several modes with different trade-offs. The most private permanent option is a VPN such as Tailscale or WireGuard: install the VPN client, enable <em>VPN</em> mode, and Hearth uses the encrypted VPN address. A reverse proxy such as Caddy or Nginx can provide a permanent HTTPS domain. A temporary Cloudflare quick tunnel can be started in one click for testing; the URL is HTTPS and still requires sign-in, but it changes after restarts and is not intended as a permanent address.</p>
+  <div class="grid">
+    <div class="card"><h3>Off / LAN only</h3><p><strong>Best for:</strong> household streaming.<br><strong>Security:</strong> no internet exposure, and all routes still require accounts.</p></div>
+    <div class="card"><h3>VPN</h3><p><strong>Best for:</strong> private permanent remote use.<br><strong>Security:</strong> traffic travels through your VPN with no public port forwarding.</p></div>
+    <div class="card"><h3>HTTPS reverse proxy</h3><p><strong>Best for:</strong> a permanent domain.<br><strong>Security:</strong> terminate TLS at Caddy/Nginx and keep Hearth bound to a private interface.</p></div>
+    <div class="card"><h3>Quick tunnel</h3><p><strong>Best for:</strong> temporary test access.<br><strong>Security:</strong> HTTPS and authenticated, but the URL is ephemeral.</p></div>
+  </div>
+  <div class="note"><p><strong>Never expose an unauthenticated server.</strong> Hearth requires sign-in for all media, file and administrative routes. If you use a proxy, keep its own access controls enabled and do not bypass authentication.</p></div>
+
+  <div class="chapter-header">
+    <div class="section-tag">09 &middot; Service</div>
+    <h1>Run Hearth in the background</h1>
+  </div>
+  <p>By default, closing the Hearth window minimizes it to the system tray and the server continues running. Quitting from the tray stops the desktop-managed server. If you want the server to survive reboots even when the desktop app is not running, install the optional Windows service from the dashboard.</p>
+  <p>The service uses a wrapper around the same Hearth runtime and writes rolling logs to your server data folder. Windows will request administrator approval to install, start, stop or uninstall it. When the service is running, the control panel automatically administers the service instead of launching a second process, avoiding port conflicts. Stop the service before changing the port or restoring a backup.</p>
+  <div class="card"><h3>Restart on failure</h3><p>The desktop-managed process can automatically restart after an unexpected exit, with increasing delay. The Windows service has its own failure-restart policy. You can toggle desktop automatic restart from the dashboard service panel.</p></div>
+
+  <div class="chapter-header">
+    <div class="section-tag">10 &middot; Backup</div>
+    <h1>Protect settings and history</h1>
+  </div>
+  <p>Backups contain a consistent SQLite snapshot of libraries, users, permissions, watch history, collections and encrypted settings. Original media files and artwork caches are not duplicated, which keeps backups small. Create a backup before updating Hearth or moving libraries, then download it to another drive.</p>
+  <p>To restore, stop the server or service, choose a <code>.hearthbackup</code> file, and Hearth keeps a pre-restore snapshot before replacing the live database. Because API keys are encrypted, a backup restores cleanly on the same installation; when migrating to another machine, re-enter provider keys after restoring. Test restores occasionally rather than discovering a problem during an emergency.</p>
+
+  <div class="chapter-header">
+    <div class="section-tag">11 &middot; Updates</div>
+    <h1>Check and install updates</h1>
+  </div>
+  <p>The Updates section checks an HTTPS update manifest and downloads a verified installer. A manifest entry includes the version, download URL and SHA-256 checksum. Hearth refuses non-HTTPS sources and rejects packages whose checksum does not match. Once downloaded and verified, it launches the installer in silent mode.</p>
+  <pre>{
+  "version": "1.1.0",
+  "url": "https://example.com/downloads/Hearth-Setup-1.1.0-x64.exe",
+  "sha256": "64 hexadecimal characters",
+  "notes": "Improved subtitle selection and scan performance"
+}</pre>
+  <p>Until you publish an update feed, the section reports that you are up to date. You can also install a newer installer manually; settings and libraries are preserved because they live outside the program folder.</p>
+
+  <div class="chapter-header">
+    <div class="section-tag">12 &middot; Troubleshooting</div>
+    <h1>Diagnostics and common fixes</h1>
+  </div>
+  <p>Use the dashboard activity feed and <strong>Logs</strong> for the fastest diagnosis. Logs are structured JSON and rotate daily. The diagnostics panel shows the Node version, FFmpeg version, validated hardware encoders, database location and remote access state. If a scan fails, the affected path and reason are recorded rather than silently skipped.</p>
+  <div class="grid">
+    <div class="card"><h3>Device cannot open the web app</h3><p>Confirm both devices are on the same network, use the adapter IP shown in Network, and check Windows Firewall.</p></div>
+    <div class="card"><h3>Library is empty</h3><p>Verify the library type matches the files, run a full scan, and check that files are not hidden or symlinked.</p></div>
+    <div class="card"><h3>Playback buffers</h3><p>Try a lower rendition, allow hardware transcoding, or confirm the storage disk is not saturated.</p></div>
+    <div class="card"><h3>Subtitles do not appear</h3><p>Image-based PGS/DVD subtitles cannot be converted to browser text; use an SRT/ASS/VTT sidecar.</p></div>
+    <div class="card"><h3>Remote test fails</h3><p>Confirm the tunnel/proxy is running and its URL reaches this server; check HTTPS certificates and firewall rules.</p></div>
+    <div class="card"><h3>Missing files warning</h3><p>Reconnect the drive, correct the library folder, then scan again. Missing titles remain in history.</p></div>
+  </div>
+  <p>If the desktop app cannot reach a running service, stop the service, open Hearth again, and verify the port in Network. If a restore fails, do not overwrite the pre-restore snapshot; check disk space and confirm the backup file is a Hearth-generated <code>.hearthbackup</code> file.</p>
+
+  <div class="closing">
+    <h2>Practical operating notes</h2>
+    <p>Keep your media on reliable storage, create a backup after major library changes, and give each viewer their own profile. Use VPN or HTTPS reverse-proxy mode for permanent remote access and reserve quick tunnels for temporary testing. The result is a private, fast streaming platform that remains entirely under your control.</p>
+  </div>
+
+</div>
+
+</body>
+</html>
